@@ -45,7 +45,7 @@ class GameWindow < Gosu::Window
 
         @time.update
         # puts @time.seconds
-        if @time.seconds > 3
+        if @time.seconds > 9
           @game_over = true
         end
       end
@@ -53,7 +53,7 @@ class GameWindow < Gosu::Window
   end
 
   def restart
-    if Gosu::button_down?(Gosu::KbA)
+    if Gosu::button_down?(Gosu::KbSpace)
       initialize
     end
   end
@@ -65,7 +65,7 @@ class GameWindow < Gosu::Window
     @font.draw("Score: #{@score}", 0, 0, 1, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
     if @game_over
       @font.draw("GAME OVER", WIDTH/3, HEIGHT/2-20, 2, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
-      @font.draw("Press A to start a new game", WIDTH-500, HEIGHT/2+20, 2, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
+      @font.draw("Press Space to start a new game", WIDTH-530, HEIGHT/2+20, 2, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
       restart
     end
 
