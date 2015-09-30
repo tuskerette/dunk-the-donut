@@ -12,10 +12,8 @@ class Mug
 
   def update
     if Gosu::button_down?(Gosu::KbLeft)
-      #move the ship left
       @x -= @speed
     elsif Gosu::button_down?(Gosu::KbRight)
-      #move the ship right
       @x += @speed
     elsif Gosu::button_down?(Gosu::KbUp)
       @y -= @speed
@@ -31,8 +29,5 @@ class Mug
   def draw
     @image.draw(@x, @y, @z)
   end
-
-
-
 
 end
