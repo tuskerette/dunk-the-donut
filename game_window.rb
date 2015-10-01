@@ -16,7 +16,7 @@ class GameWindow < Gosu::Window
     @mug = Mug.new
     @donuts = []
     @font = Gosu::Font.new(30)
-    # @explosion = Gosu::Sample.new("sounds/explosion.wav")
+    # @curent_song = Gosu::Song.new("songs/motorcycle.wav")
     @time = Timer.new(GameWindow)
     @game_over = false
     @score = 0
@@ -33,8 +33,6 @@ class GameWindow < Gosu::Window
       @donuts.each do |donut|
         donut.update
         if Gosu::distance(@mug.x, @mug.y, donut.x, donut.y) < 35
-          # @explosion.play
-          # @game_over = true
           @score +=1
           @donuts.delete(donut)
         end
