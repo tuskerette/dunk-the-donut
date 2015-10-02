@@ -1,6 +1,7 @@
 require 'gosu'
 require_relative 'mug'
 require_relative 'donut'
+require_relative 'special'
 require_relative 'timer'
 
 class GameWindow < Gosu::Window
@@ -12,9 +13,9 @@ class GameWindow < Gosu::Window
     self.caption = "Dunk the donut"
 
     @background_image = Gosu::Image.new("images/space.png")
-
     @mug = Mug.new
     @donuts = []
+    @specials = []
     @font = Gosu::Font.new(30)
     @current_song = Gosu::Song.new("songs/motorcycle.mp3")
     @time = Timer.new(GameWindow)
@@ -30,6 +31,10 @@ class GameWindow < Gosu::Window
         @donuts << Donut.new
       end
 
+      if rand(500) < 4
+        @specials << Special.new
+      end
+
       @donuts.each do |donut|
         donut.update
         if Gosu::distance(@mug.x, @mug.y, donut.x, donut.y) < 35
@@ -39,6 +44,18 @@ class GameWindow < Gosu::Window
 
         if donut.off_screen?
           @donuts.delete(donut)
+        end
+      end
+
+      @specials.each do |special|
+        special.update
+        if Gosu::distance(@mug.x, @mug.y, special.x, special.y) < 35
+          @score +=3
+          @specials.delete(special)
+        end
+
+        if special.off_screen?
+          @specials.delete(special)
         end
       end
 
@@ -68,6 +85,10 @@ class GameWindow < Gosu::Window
 
     @donuts.each do|donut|
       donut.draw
+    end
+
+    @specials.each do|special|
+      special.draw
     end
   end
 end
