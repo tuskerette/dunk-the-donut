@@ -24,6 +24,10 @@ class Mug
       @y = GameWindow::HEIGHT - @height
     end
 
+    @x %= GameWindow::WIDTH
+    @y %= GameWindow::HEIGHT
+    # puts "x is #{@x}"
+    # puts "y is #{@y}"
   end
 
   def draw

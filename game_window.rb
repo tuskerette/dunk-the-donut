@@ -40,12 +40,11 @@ class GameWindow < Gosu::Window
         if donut.off_screen?
           @donuts.delete(donut)
         end
+      end
 
-        @time.update
-        # puts @time.seconds
-        if @time.seconds > 9
-          @game_over = true
-        end
+      @time.update
+      if @time.seconds > 9
+        @game_over = true
       end
     end
   end
@@ -62,7 +61,7 @@ class GameWindow < Gosu::Window
     @font.draw("Time: #{@time.seconds}", WIDTH-120, 0, 1, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
     @font.draw("Score: #{@score}", 0, 0, 1, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
     if @game_over
-      @font.draw("GAME OVER", WIDTH/3, HEIGHT/2-20, 2, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
+      @font.draw("GAME OVER", WIDTH-400, HEIGHT/2-20, 2, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
       @font.draw("Press Space to start a new game", WIDTH-530, HEIGHT/2+20, 2, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
       restart
     end
