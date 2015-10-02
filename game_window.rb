@@ -16,7 +16,7 @@ class GameWindow < Gosu::Window
     @mug = Mug.new
     @donuts = []
     @font = Gosu::Font.new(30)
-    # @curent_song = Gosu::Song.new("songs/motorcycle.wav")
+    @current_song = Gosu::Song.new("songs/motorcycle.mp3")
     @time = Timer.new(GameWindow)
     @game_over = false
     @score = 0
@@ -25,7 +25,7 @@ class GameWindow < Gosu::Window
   def update
     if !@game_over
       @mug.update
-
+      @current_song.play
       if rand(100) < 4
         @donuts << Donut.new
       end
@@ -43,7 +43,7 @@ class GameWindow < Gosu::Window
       end
 
       @time.update
-      if @time.seconds > 9
+      if @time.seconds == 59
         @game_over = true
       end
     end
