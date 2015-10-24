@@ -20,6 +20,9 @@ class GameWindow < Gosu::Window
     @bad_donuts = []
     @font = Gosu::Font.new(30)
     @current_song = Gosu::Song.new("songs/motorcycle.mp3")
+    @dunk = Gosu::Sample.new("sounds/dunk.wav")
+    @good_dunk = Gosu::Sample.new("sounds/good_dunk.wav")
+    @bad_dunk = Gosu::Sample.new("sounds/bad_dunk.wav")
     @time = Timer.new(GameWindow)
     @game_over = false
     @score = 0
@@ -45,6 +48,7 @@ class GameWindow < Gosu::Window
         donut.update
         if Gosu::distance(@mug.x, @mug.y, donut.x, donut.y) < 35
           @score +=1
+          @dunk.play
           @donuts.delete(donut)
         end
 
@@ -57,6 +61,7 @@ class GameWindow < Gosu::Window
         special.update
         if Gosu::distance(@mug.x, @mug.y, special.x, special.y) < 35
           @score +=5
+          @good_dunk.play
           @specials.delete(special)
         end
 
@@ -69,6 +74,7 @@ class GameWindow < Gosu::Window
         bad.update
         if Gosu::distance(@mug.x, @mug.y, bad.x, bad.y) < 35
           @score -=5
+          @bad_dunk.play
           @bad_donuts.delete(bad)
         end
 
